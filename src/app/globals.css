@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource/bebas-neue";
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/autoplay";
+
+@plugin "@tailwindcss/typography";
+
+@layer utilities {
+  .bg-footer-gradient {
+    background-image: linear-gradient(0deg, #2c5997, #2c5997),
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 35.75%, rgba(0, 0, 0, 0.4) 100%);
+  }
+  .bg-car-card-gradient {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      #c1dafc 100%
+    );
+  }
+
+  .bg-top-car-gradient {
+    background-image: linear-gradient(90deg, #fafcfe 0%, #e7f1fe 100%);
+  }
+  .bg-cars-card-gradient {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(193, 218, 252, 0.5) 100%
+    );
+  }
+
+  .bg-hero-gradient {
+    background-image: linear-gradient(
+      180deg,
+      rgba(38, 54, 73, 0.9) 0%,
+      rgba(0, 0, 0, 0) 56.56%
+    );
+  }
+
+  .bg-navbar-gradient {
+    background-image: linear-gradient(
+      90.21deg,
+      rgba(6, 2, 28, 0.6) 0%,
+      rgba(26, 19, 70, 0.6) 100%
+    );
+  }
+}
+
+@theme {
+  --color-yellow: #caa35b;
+  --color-gray: #666666;
+  --color-black: #24204c;
+  --color-blue: #221f4b;
+
+  --breakpoint-3xl: 101.875rem;
+  --breakpoint-4xl: 113.125rem;
+  --breakpoint-5xl: 138.125rem;
+}
+
+:root {
+  --font-bebas-neue: "Bebas Neue";
+  --font-be-vietnam-pro: "Be Vietnam Pro";
+  --font-poppins: "Poppins";
+  --font-inter: "Inter";
+}
+
+.bebas-neue {
+  font-family: var(--font-bebas-neue);
+}
+
+.inter {
+  font-family: var(--font-inter);
+}
+.poppins {
+  font-family: var(--font-poppins);
+}
+
+.be-vietnam-pro {
+  font-family: var(--font-be-vietnam-pro);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+ 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
