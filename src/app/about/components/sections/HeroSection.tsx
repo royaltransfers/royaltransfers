@@ -1,9 +1,9 @@
 "use client";
 
-import { AboutBg } from "@/assets";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
+import { AboutBG } from "@/assets";
 
 export default function HeroSection() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,10 +26,10 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           className="w-full h-2/3 object-cover"
-          src={AboutBg}
+          src={AboutBG}
           alt="hero background"
         />
-        <div className="absolute inset-0 bg-hero-gradient"></div>
+        {/* <div className="absolute inset-0 bg-hero-gradient"></div> */}
       </div>
 
       {/* Content and Navbar */}

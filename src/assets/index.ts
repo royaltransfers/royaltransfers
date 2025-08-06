@@ -43,4 +43,6 @@ export { default as LocalTaxiRideImage } from "./local-taxi.png";
 export { default as AirpportTransfersImage } from "./airport-transfers.png";
 export { default as CorporateTravelImage } from "./corporate-travel.png";
 export { default as EventAndOccassionsImage } from "./event-and-occasions.png";
-export { default as AboutBg } from "./about-bg.jpg";
+
+export { default as SaloonCar } from "./saloon-car.png";
+export { default as AboutBG } from "./about-bg.jpg";

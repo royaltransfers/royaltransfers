@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { StarRating } from "./StarRating";
 import Image from "next/image";
-import { LargeSeatIcon, PassengerIcon, SmallSeatIcon } from "@/assets";
+import { LargeSeatIcon, PassengerIcon } from "@/assets";
 
 interface CarTypesCardProps {
   type: string;
@@ -9,7 +9,6 @@ interface CarTypesCardProps {
   carImage: StaticImageData;
   noOfPassengers: number;
   noOfLargeSeats: number;
-  noOfSmallSeats: number;
 }
 export default function CarTypesCard({ ...props }: CarTypesCardProps) {
   return (
@@ -22,7 +21,7 @@ export default function CarTypesCard({ ...props }: CarTypesCardProps) {
         <Image
           src={props.carImage}
           alt={`${props.carImage}-image`}
-          className="w-32 h-32  md:w-52 md:h-52 lg:w-40 lg:h-40 xl:w-52 xl:h-52 object-contain"
+          className="w-32 h-32  md:w-52 md:h-52 lg:w-40 lg:h-40 xl:w-52 xl:h-52 object-contain "
         />
       </div>
       <div className="flex flex-col gap-4 be-vietnam-pro">
@@ -45,18 +44,7 @@ export default function CarTypesCard({ ...props }: CarTypesCardProps) {
             height={20}
           />
           <span className="text-[#283543] whitespace-nowrap">
-            {props.noOfLargeSeats} Large
-          </span>
-        </div>
-        <div className="flex gap-1">
-          <Image
-            src={SmallSeatIcon}
-            alt="Small Seat Icon"
-            width={20}
-            height={20}
-          />
-          <span className="text-[#283543] whitespace-nowrap">
-            {props.noOfSmallSeats} Small
+            {props.noOfLargeSeats} Suitcases
           </span>
         </div>
       </div>

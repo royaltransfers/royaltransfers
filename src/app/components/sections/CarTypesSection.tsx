@@ -13,8 +13,9 @@ const CAR_TYPES = [
     star: 4,
     carImage: EconomyCar,
     noOfPassengers: 3,
-    noOfLargeSeats: 2,
-    noOfSmallSeats: 1,
+    noOfLargeSeats: 3,
+    oneWayPrice: 138,
+    roundTripPrice: 138 * 2,
   },
   {
     type: "ESTATE",
@@ -22,23 +23,26 @@ const CAR_TYPES = [
     carImage: EstateCar,
     noOfPassengers: 4,
     noOfLargeSeats: 4,
-    noOfSmallSeats: 0,
+    oneWayPrice: 238,
+    roundTripPrice: 238 * 2,
   },
   {
     type: "EXECUTIVE",
     star: 5,
     carImage: ExecutiveCar,
     noOfPassengers: 3,
-    noOfLargeSeats: 2,
-    noOfSmallSeats: 2,
+    noOfLargeSeats: 3,
+    oneWayPrice: 338,
+    roundTripPrice: 338 * 2,
   },
   {
     type: "MPV",
     star: 5,
     carImage: MpvCar,
     noOfPassengers: 5,
-    noOfLargeSeats: 3,
-    noOfSmallSeats: 2,
+    noOfLargeSeats: 5,
+    oneWayPrice: 438,
+    roundTripPrice: 438 * 2,
   },
   {
     type: "MINIBUS",
@@ -46,7 +50,8 @@ const CAR_TYPES = [
     carImage: MiniBusCar,
     noOfPassengers: 8,
     noOfLargeSeats: 8,
-    noOfSmallSeats: 0,
+    oneWayPrice: 538,
+    roundTripPrice: 538 * 2,
   },
 ];
 
@@ -81,7 +86,6 @@ export default function CarTypesSection() {
                 carImage={option.carImage}
                 noOfPassengers={option.noOfPassengers}
                 noOfLargeSeats={option.noOfLargeSeats}
-                noOfSmallSeats={option.noOfSmallSeats}
               />
             </div>
           ))}
@@ -95,7 +99,6 @@ export default function CarTypesSection() {
               carImage={option.carImage}
               noOfPassengers={option.noOfPassengers}
               noOfLargeSeats={option.noOfLargeSeats}
-              noOfSmallSeats={option.noOfSmallSeats}
             />
           ))}
         </div>
@@ -119,7 +122,6 @@ export default function CarTypesSection() {
               carImage={option.carImage}
               noOfPassengers={option.noOfPassengers}
               noOfLargeSeats={option.noOfLargeSeats}
-              noOfSmallSeats={option.noOfSmallSeats}
             />
           ))}
         </div>

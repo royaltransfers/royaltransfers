@@ -10,7 +10,6 @@ import {
   TwoWayActive,
   TwoWayNotActive,
   PassengerIcon,
-  SmallSeatIcon,
 } from "@/assets";
 import { useState } from "react";
 
@@ -20,7 +19,6 @@ interface RideOptionCardProps {
   carImage: StaticImageData;
   noOfPassengers: number;
   noOfLargeSeats: number;
-  noOfSmallSeats: number;
   oneWayPrice: number;
   roundTripPrice: number;
 }
@@ -109,18 +107,7 @@ export default function RideOptionCard(props: RideOptionCardProps) {
             height={24}
           />
           <span className="text-[#283543] whitespace-nowrap">
-            {props.noOfLargeSeats} Large
-          </span>
-        </div>
-        <div className="flex gap-1">
-          <Image
-            src={SmallSeatIcon}
-            alt="Small Seat Icon"
-            width={24}
-            height={24}
-          />
-          <span className="text-[#283543] whitespace-nowrap">
-            {props.noOfSmallSeats} Small
+            {props.noOfLargeSeats} Suitcases
           </span>
         </div>
       </div>
@@ -174,7 +161,7 @@ export default function RideOptionCard(props: RideOptionCardProps) {
               ? "Total One way Price"
               : "Total Two way Price"}
           </p>
-          <p className="text-xl lg:text-xl xl:text-2xl font-semibold">
+          <p className="text-xl lg:text-xl xl:text-2xl font-semibold text-[#FF0000]">
             ${" "}
             {tourType === "one-way" ? props.oneWayPrice : props.roundTripPrice}
             .00
