@@ -9,7 +9,6 @@ import {
   OneWayNotActive,
   TwoWayActive,
   TwoWayNotActive,
-  PassengerIcon,
   PassengerDarkIcon,
 } from "@/assets";
 import { useState } from "react";

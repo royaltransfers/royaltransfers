@@ -497,7 +497,7 @@ export default function LocationQuoteForm() {
                         luggage === num ? "bg-blue-50 text-blue-600" : ""
                       }`}
                     >
-                      {num === 0 ? "0 (No bags)" : num}
+                      {num === 0 ? "0  (No bags)" : num}
                     </div>
                   ))}
                 </div>

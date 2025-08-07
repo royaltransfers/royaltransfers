@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { StarRating } from "./StarRating";
 import Image from "next/image";
-import { LargeSeatIcon, PassengerDarkIcon, PassengerIcon } from "@/assets";
+import { LargeSeatIcon, PassengerDarkIcon } from "@/assets";
 
 interface CarTypesCardProps {
   type: string;
