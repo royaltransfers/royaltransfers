@@ -473,9 +473,7 @@ export default function LocationQuoteForm() {
                 onClick={() => handleDropdownToggle("luggage")}
                 className="w-full px-8 lg:px-10 py-2 lg:py-3 xl:[@media(min-height:800px)]:py-4 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue cursor-pointer flex items-center justify-between bg-white"
               >
-                <span>
-                  {luggage === 0 ? "None" : String(luggage).padStart(2, "0")}
-                </span>
+                <span>{luggage === 0 ? "None" : luggage}</span>
                 {openDropdown === "luggage" ? (
                   <ChevronUp
                     size={16}
@@ -499,9 +497,7 @@ export default function LocationQuoteForm() {
                         luggage === num ? "bg-blue-50 text-blue-600" : ""
                       }`}
                     >
-                      {num === 0
-                        ? "00 (No bags)"
-                        : String(num).padStart(2, "0")}
+                      {num === 0 ? "0 (No bags)" : num}
                     </div>
                   ))}
                 </div>

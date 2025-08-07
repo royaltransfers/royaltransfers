@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { StarRating } from "./StarRating";
 import Image from "next/image";
-import { LargeSeatIcon, PassengerIcon } from "@/assets";
+import { LargeSeatIcon, PassengerDarkIcon, PassengerIcon } from "@/assets";
 
 interface CarTypesCardProps {
   type: string;
@@ -27,7 +27,7 @@ export default function CarTypesCard({ ...props }: CarTypesCardProps) {
       <div className="flex flex-col gap-4 be-vietnam-pro">
         <div className="flex gap-1">
           <Image
-            src={PassengerIcon}
+            src={PassengerDarkIcon}
             alt="Passenger Icon"
             width={20}
             height={20}

@@ -10,6 +10,7 @@ import {
   TwoWayActive,
   TwoWayNotActive,
   PassengerIcon,
+  PassengerDarkIcon,
 } from "@/assets";
 import { useState } from "react";
 
@@ -93,7 +94,7 @@ export default function RideOptionCard(props: RideOptionCardProps) {
       <div className="flex flex-col gap-4 be-vietnam-pro text-black">
         <div className="flex gap-1">
           <Image
-            src={PassengerIcon}
+            src={PassengerDarkIcon}
             alt="Passenger Icon"
             width={24}
             height={24}
