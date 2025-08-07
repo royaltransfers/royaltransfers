@@ -16,6 +16,8 @@ import { StarRating } from "../StarRating";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { showToast } from "@/utils/defaultToastOption";
+import { metersToKm } from "@/utils/metersToKm";
 
 const RIDE_OPTIONS = [
   {
@@ -77,6 +79,7 @@ const DRIVERS = [
     star: 5,
   },
 ];
+type TourType = "one-way" | "two-way";
 
 export default function RidePickingSection() {
   const searchParams = useSearchParams();
@@ -91,31 +94,62 @@ export default function RidePickingSection() {
 
   const pickup = searchParams.get("pickup");
   const arrival = searchParams.get("arrival");
+  const distance = searchParams.get("distance");
   const passengers = parseInt(searchParams.get("passengers") || "1");
   const luggage = parseInt(searchParams.get("luggage") || "0");
-  // const tourType = searchParams.get("tourType") || "oneWay";
+  const tourType = ((): TourType => {
+    const value = searchParams.get("tourType");
+    return value === "two-way" ? "two-way" : "one-way";
+  })();
 
   useEffect(() => {
-    if (pickup && arrival) {
+    if (
+      distance !== null &&
+      (!distance || distance.trim() === "" || isNaN(Number(distance)))
+    ) {
+      showToast("error", "Invalid distance value");
+    }
+  }, [distance]);
+
+  useEffect(() => {
+    if (pickup && arrival && distance && passengers && tourType) {
+      console.log("Pickup:", pickup, "Arrival:", arrival);
       document
         .getElementById("ride-section")
         ?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [pickup, arrival]);
+  }, [pickup, arrival, distance, passengers, luggage, tourType]);
 
   if (!pickup || !arrival) return null;
 
-  // Filter ride options based on passengers and luggage
-  const filteredRideOptions = RIDE_OPTIONS.filter((option) => {
-    // Check if vehicle can accommodate passengers
-    const canFitPassengers = option.noOfPassengers >= passengers;
+  const distanceInKm = metersToKm(Number(distance));
 
-    // Check if vehicle can accommodate luggage (assuming each large seat can hold 1 luggage)
-    // You might need to adjust this logic based on your actual requirements
+  const filteredRideOptions = RIDE_OPTIONS.map((option) => {
+    const additionalPrice = distanceInKm * 10;
+    console.log("Additioal price is ", additionalPrice);
+    console.log("Distance in km is ", distanceInKm);
+    console.log("One way price is ", option.oneWayPrice);
+    console.log("Round trip price is ", option.roundTripPrice);
+    return {
+      ...option,
+      oneWayPrice: option.oneWayPrice + additionalPrice,
+      roundTripPrice: (option.oneWayPrice + additionalPrice) * 2,
+    };
+  }).filter((option) => {
+    const canFitPassengers = option.noOfPassengers >= passengers;
     const canFitLuggage = option.noOfLargeSeats >= luggage;
 
     return canFitPassengers && canFitLuggage;
   });
+
+  console.log("Filtered ride options: ", filteredRideOptions);
+
+  // const filteredRideOptions = RIDE_OPTIONS.filter((option) => {
+  //   const canFitPassengers = option.noOfPassengers >= passengers;
+  //   const canFitLuggage = option.noOfLargeSeats >= luggage;
+
+  //   return canFitPassengers && canFitLuggage;
+  // });
 
   return (
     <section id="ride-section" className="py-20 mb-10 poppins">
@@ -160,6 +194,7 @@ export default function RidePickingSection() {
               noOfLargeSeats={option.noOfLargeSeats}
               oneWayPrice={option.oneWayPrice}
               roundTripPrice={option.roundTripPrice}
+              tourType={tourType}
             />
           ))}
           <div className="flex w-full flex-col items-end justify-end md:mt-3 lg:m-0 lg:col-start-2">

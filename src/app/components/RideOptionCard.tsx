@@ -21,12 +21,15 @@ interface RideOptionCardProps {
   noOfLargeSeats: number;
   oneWayPrice: number;
   roundTripPrice: number;
+  tourType: "one-way" | "two-way";
 }
 export default function RideOptionCard(props: RideOptionCardProps) {
-  const [tourType, setTourType] = useState<"one-way" | "two-way">("one-way");
+  const [tourType, setTourType] = useState<"one-way" | "two-way">(
+    props.tourType
+  );
 
   return (
-    <div className="w-full bg-[#F8F8F8] px-5 lg:px-3 xl:px-5 py-7 md:pb-0 xl:pb-0 xl:pt-10 flex flex-col md:flex-row gap-6 md:gap-10 lg:gap-2 2xl:gap-10 justify-between rounded-xl">
+    <div className="w-full bg-[#F8F8F8] px-5 lg:px-3 xl:px-5 py-7 md:pb-0 lg:pb-5 xl:pb-0 xl:pt-10 flex flex-col md:flex-row gap-6 md:gap-10 lg:gap-2 2xl:gap-10 justify-between rounded-xl">
       <div className="flex flex-col gap-2">
         <div className="flex  justify-between">
           <div className="felx flex-col gap-2">
@@ -163,8 +166,10 @@ export default function RideOptionCard(props: RideOptionCardProps) {
           </p>
           <p className="text-xl lg:text-xl xl:text-2xl font-semibold text-[#FF0000]">
             ${" "}
-            {tourType === "one-way" ? props.oneWayPrice : props.roundTripPrice}
-            .00
+            {(tourType === "one-way"
+              ? props.oneWayPrice
+              : props.roundTripPrice
+            ).toFixed(2)}
           </p>
         </div>
 

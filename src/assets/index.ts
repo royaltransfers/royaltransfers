@@ -46,3 +46,5 @@ export { default as EventAndOccassionsImage } from "./event-and-occasions.png";
 
 export { default as SaloonCar } from "./saloon-car.png";
 export { default as AboutBG } from "./about-bg.jpg";
+
+export { default as LugageIconSVG } from "./lugage-icon.svg";

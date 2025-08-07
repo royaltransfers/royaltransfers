@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Poppins, Be_Vietnam_Pro, Inter } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/providers/toast-provider";
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -45,7 +46,7 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${poppins.variable} ${beVietnamePro.variable} ${inter.className} antialiased`}
       >
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );
