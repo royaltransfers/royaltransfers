@@ -10,7 +10,7 @@ import CarTypesCard from "../CarTpesCard";
 const CAR_TYPES = [
   {
     type: "ECONOMY",
-    star: 4,
+    star: 5,
     carImage: EconomyCar,
     noOfPassengers: 3,
     noOfLargeSeats: 3,
