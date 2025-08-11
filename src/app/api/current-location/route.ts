@@ -7,7 +7,6 @@ export async function GET(req: NextRequest) {
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
 
-  console.log("lat and lng are ", lat, lng);
   if (!lat || !lng) {
     return NextResponse.json(
       createResponse(false, "Latitude and longitude are required.", null),
@@ -16,7 +15,6 @@ export async function GET(req: NextRequest) {
   }
 
   const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  console.log("map key is ", GOOGLE_MAPS_API_KEY);
   if (!GOOGLE_MAPS_API_KEY) {
     return NextResponse.json(
       createResponse(
@@ -51,7 +49,6 @@ export async function GET(req: NextRequest) {
         { status: 404 }
       );
     }
-    console.log("geo data", geoData);
     const address = geoData.results[0].formatted_address;
     return NextResponse.json(createResponse(true, "Success", { address }), {
       status: 200,

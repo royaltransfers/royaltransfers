@@ -74,7 +74,6 @@ export const getCoordinates = async (
           default:
             errorMessage += "Unknown error.";
         }
-        console.log("Geolocation error: ", errorMessage);
 
         resolve({
           status: false,

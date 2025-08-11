@@ -49,7 +49,6 @@ export async function POST(req: NextRequest) {
       text,
       html: html || undefined,
     };
-    console.log("email data is ", emailData);
     await sendgrid.send(emailData);
 
     return NextResponse.json(

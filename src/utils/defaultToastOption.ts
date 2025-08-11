@@ -28,8 +28,6 @@ export const showToast = (
   options: Partial<ToastOptions> = {}
 ): Id => {
   const optionsToApply = { ...defaultToastOptions, ...options };
-  console.log("content is ", content);
-  console.log("type is ", type);
 
   switch (type) {
     case "success":

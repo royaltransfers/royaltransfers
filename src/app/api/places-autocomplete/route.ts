@@ -11,10 +11,8 @@ export async function GET(req: NextRequest) {
       status: 400,
     });
   }
-  console.log(input);
 
   const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  console.log("map key is ", GOOGLE_MAPS_API_KEY);
   if (!GOOGLE_MAPS_API_KEY) {
     return NextResponse.json(
       createResponse(
@@ -55,7 +53,6 @@ export async function GET(req: NextRequest) {
         { status: 404 }
       );
     }
-    console.log(response.data.suggestions[0].placePrediction);
     const suggestions = response.data.suggestions.map(
       (suggestion: { placePrediction: { text: { text: string } } }) =>
         suggestion.placePrediction.text.text
@@ -68,7 +65,6 @@ export async function GET(req: NextRequest) {
     const errorMessage = axios.isAxiosError(error)
       ? error.message
       : String(error);
-    console.log("error is ", errorMessage);
     return NextResponse.json(createResponse(false, errorMessage, null), {
       status: 500,
     });

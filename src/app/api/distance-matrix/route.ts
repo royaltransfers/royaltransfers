@@ -4,8 +4,13 @@ import axios from "axios";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const origin = searchParams.get("origin");
-  const destination = searchParams.get("destination");
+  const encodedOrigin = searchParams.get("origin");
+  const encodedDestination = searchParams.get("destination");
+
+  const origin = encodedOrigin ? decodeURIComponent(encodedOrigin) : null;
+  const destination = encodedDestination
+    ? decodeURIComponent(encodedDestination)
+    : null;
 
   if (!origin || !destination) {
     return NextResponse.json(
@@ -17,7 +22,6 @@ export async function GET(req: NextRequest) {
   }
 
   const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  console.log("map key is ", GOOGLE_MAPS_API_KEY);
   if (!GOOGLE_MAPS_API_KEY) {
     return NextResponse.json(
       createResponse(
@@ -56,10 +60,8 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    console.log(response.data);
     const distanceMeters = response.data.routes[0].distanceMeters;
     const duration = response.data.routes[0].duration;
-    console.log("distance is ", distanceMeters);
 
     return NextResponse.json(
       createResponse(true, "Success", {
@@ -73,7 +75,6 @@ export async function GET(req: NextRequest) {
     const errorMessage = axios.isAxiosError(error)
       ? error.message
       : String(error);
-    console.log("error is ", errorMessage);
     return NextResponse.json(createResponse(false, errorMessage, null), {
       status: 500,
     });

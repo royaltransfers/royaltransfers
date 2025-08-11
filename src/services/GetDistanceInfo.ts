@@ -4,7 +4,10 @@ import axios from "axios";
 
 export const getDistanceInfo = async (origin: string, destination: string) => {
   try {
-    const url = `${ENDPOINTS.distance.getDistance}?origin=${origin}&destination=${destination}`;
+    const url = `${ENDPOINTS.distance.getDistance}?origin=${encodeURIComponent(
+      origin
+    )}&destination=${encodeURIComponent(destination)}`;
+
     const response = await axiosInstance.get(url);
     const responseData: Response<{
       distance: { distanceMeters: string; duration: string };

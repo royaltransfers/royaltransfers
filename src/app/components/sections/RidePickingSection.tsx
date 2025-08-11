@@ -113,7 +113,6 @@ export default function RidePickingSection() {
 
   useEffect(() => {
     if (pickup && arrival && distance && passengers && tourType) {
-      console.log("Pickup:", pickup, "Arrival:", arrival);
       document
         .getElementById("ride-section")
         ?.scrollIntoView({ behavior: "smooth" });
@@ -126,10 +125,6 @@ export default function RidePickingSection() {
 
   const filteredRideOptions = RIDE_OPTIONS.map((option) => {
     const additionalPrice = distanceInKm * 10;
-    console.log("Additioal price is ", additionalPrice);
-    console.log("Distance in km is ", distanceInKm);
-    console.log("One way price is ", option.oneWayPrice);
-    console.log("Round trip price is ", option.roundTripPrice);
     return {
       ...option,
       oneWayPrice: option.oneWayPrice + additionalPrice,
@@ -142,7 +137,6 @@ export default function RidePickingSection() {
     return canFitPassengers && canFitLuggage;
   });
 
-  console.log("Filtered ride options: ", filteredRideOptions);
 
   // const filteredRideOptions = RIDE_OPTIONS.filter((option) => {
   //   const canFitPassengers = option.noOfPassengers >= passengers;
