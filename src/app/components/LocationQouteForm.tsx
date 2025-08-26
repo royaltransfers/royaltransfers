@@ -14,7 +14,7 @@ import {
   TwoWayNotActive,
 } from "@/assets";
 import Image from "next/image";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+// import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { getCurrentLocation } from "@/services/GetCurrentLocation";
@@ -53,9 +53,9 @@ export default function LocationQuoteForm() {
   const arrivalRef = useRef<HTMLDivElement>(null);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const pathname = usePathname();
+  // const router = useRouter();
 
   const {
     register,
@@ -158,43 +158,77 @@ export default function LocationQuoteForm() {
     };
   }, []);
 
-  const onSubmit = useCallback(
-    async (data: LocationFormData) => {
-      const params = new URLSearchParams(searchParams);
+  // const onSubmit = useCallback(
+  //   async (data: LocationFormData) => {
+  //     const params = new URLSearchParams(searchParams);
 
-      try {
-        const distanceResponse: Response<{
-          distance: { distanceMeters: string; duration: string };
-        }> = await getDistanceInfo(data.pickup, data.arrival);
+  //     try {
+  //       const distanceResponse: Response<{
+  //         distance: { distanceMeters: string; duration: string };
+  //       }> = await getDistanceInfo(data.pickup, data.arrival);
 
-        if (distanceResponse.status && distanceResponse.data.distance) {
-          const distanceMeters = distanceResponse.data.distance.distanceMeters;
-          params.set("distance", distanceMeters);
-        } else {
-          showToast(
-            "error",
-            distanceResponse?.message || "Failed to calculate distance."
-          );
-          return;
-        }
+  //       if (distanceResponse.status && distanceResponse.data.distance) {
+  //         const distanceMeters = distanceResponse.data.distance.distanceMeters;
+  //         params.set("distance", distanceMeters);
+  //       } else {
+  //         showToast(
+  //           "error",
+  //           distanceResponse?.message || "Failed to calculate distance."
+  //         );
+  //         return;
+  //       }
 
-        params.set("pickup", data.pickup);
-        params.set("arrival", data.arrival);
-        params.set("passengers", data.passengers.toString());
-        params.set("luggage", data.luggage.toString());
-        params.set("tourType", data.tourType);
+  //       params.set("pickup", data.pickup);
+  //       params.set("arrival", data.arrival);
+  //       params.set("passengers", data.passengers.toString());
+  //       params.set("luggage", data.luggage.toString());
+  //       params.set("tourType", data.tourType);
 
-        router.replace(`${pathname}?${params.toString()}`);
-      } catch (error) {
-        console.error("Error submitting form:", error);
+  //       router.replace(`${pathname}?${params.toString()}`);
+  //     } catch (error) {
+  //       console.error("Error submitting form:", error);
+  //       showToast(
+  //         "error",
+  //         "Unexpected error occurred while calculating distance."
+  //       );
+  //     }
+  //   },
+  //   [searchParams, pathname, router]
+  // );
+
+  const onSubmit = useCallback(async (data: LocationFormData) => {
+    try {
+      const distanceResponse: Response<{
+        distance: { distanceMeters: string; duration: string };
+      }> = await getDistanceInfo(data.pickup, data.arrival);
+
+      if (!distanceResponse.status || !distanceResponse.data.distance) {
         showToast(
           "error",
-          "Unexpected error occurred while calculating distance."
+          distanceResponse?.message || "Failed to calculate distance."
         );
+        return;
       }
-    },
-    [searchParams, pathname, router]
-  );
+
+      const message = `New Ride Request:%0A
+Pickup: ${data.pickup}%0A
+Arrival: ${data.arrival}%0A
+Passengers: ${data.passengers}%0A
+Luggage: ${data.luggage}%0A
+Trip Type: ${data.tourType}`;
+
+      const phoneNumber = "923134911933";
+
+      // Open WhatsApp
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      showToast(
+        "error",
+        "Unexpected error occurred while preparing WhatsApp message."
+      );
+    }
+  }, []);
 
   const handleTourType = useCallback(
     (type: "one-way" | "two-way") => {

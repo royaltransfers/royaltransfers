@@ -111,13 +111,13 @@ export default function RidePickingSection() {
     }
   }, [distance]);
 
-  useEffect(() => {
-    if (pickup && arrival && distance && passengers && tourType) {
-      document
-        .getElementById("ride-section")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [pickup, arrival, distance, passengers, luggage, tourType]);
+  // useEffect(() => {
+  //   if (pickup && arrival && distance && passengers && tourType) {
+  //     document
+  //       .getElementById("ride-section")
+  //       ?.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [pickup, arrival, distance, passengers, luggage, tourType]);
 
   if (!pickup || !arrival) return null;
 
@@ -136,7 +136,6 @@ export default function RidePickingSection() {
 
     return canFitPassengers && canFitLuggage;
   });
-
 
   // const filteredRideOptions = RIDE_OPTIONS.filter((option) => {
   //   const canFitPassengers = option.noOfPassengers >= passengers;
