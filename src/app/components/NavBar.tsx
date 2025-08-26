@@ -94,7 +94,7 @@ export default function NavBar({ scrolled }: NavBarProps) {
 
         <div className="hidden lg:block">
           <a
-            href="https://wa.me/923134911933?text=Hi%20there%2C%20I%27d%20like%20to%20book%20a%20ride"
+            href="https://wa.me/442080049990?text=Hi%20there%2C%20I%27d%20like%20to%20book%20a%20ride"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-yellow text-white px-6 xl:px-8 py-3 rounded-full poppins"
@@ -119,7 +119,7 @@ export default function NavBar({ scrolled }: NavBarProps) {
           ))}
           <div className="px-4 py-2 mt-2">
             <a
-              href="https://wa.me/923134911933?text=Hi%20there%2C%20I%27d%20like%20to%20book%20a%20ride"
+              href="https://wa.me/442080049990?text=Hi%20there%2C%20I%27d%20like%20to%20book%20a%20ride"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-yellow text-white px-8 py-3 rounded-full poppins w-full block text-center"

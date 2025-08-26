@@ -21,6 +21,7 @@ import { getCurrentLocation } from "@/services/GetCurrentLocation";
 import { getSuggestions } from "@/services/GetSuggestions";
 import { getDistanceInfo } from "@/services/GetDistanceInfo";
 import { showToast } from "@/utils/defaultToastOption";
+import { metersToKm } from "@/utils/metersToKm";
 
 const locationSchema = z.object({
   pickup: z.string().min(1, "Pickup location is required."),
@@ -210,14 +211,21 @@ export default function LocationQuoteForm() {
         return;
       }
 
+      // Convert meters to kilometers
+      const distanceInKm = metersToKm(
+        Number(distanceResponse.data.distance.distanceMeters)
+      );
+
+      // Build message with km instead of meters
       const message = `New Ride Request:%0A
 Pickup: ${data.pickup}%0A
 Arrival: ${data.arrival}%0A
+Distance: ${distanceInKm} km%0A
 Passengers: ${data.passengers}%0A
 Luggage: ${data.luggage}%0A
 Trip Type: ${data.tourType}`;
 
-      const phoneNumber = "923134911933";
+      const phoneNumber = "442080049990";
 
       // Open WhatsApp
       window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
